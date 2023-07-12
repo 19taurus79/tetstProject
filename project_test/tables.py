@@ -51,7 +51,7 @@ class Remains(Table):
     buh = Integer()
     skl = Integer()
     weight = Varchar(null=True)
-    product = Varchar(null=True)
+    product = ForeignKey(references=ProductGuide)
 
 
 class Submissions(Table):
@@ -77,7 +77,7 @@ class Submissions(Table):
     plan = Integer()
     fact = Integer()
     different = Integer()
-    product = Varchar(null=True)
+    product = ForeignKey(references=ProductGuide)
 
 
 class AvailableStock(Table):
@@ -88,4 +88,4 @@ class AvailableStock(Table):
     division = Varchar(null=True)
     line_of_business = Varchar(null=True)
     available = Integer()
-    product = Varchar(null=True)
+    product = ForeignKey(references=ProductGuide)

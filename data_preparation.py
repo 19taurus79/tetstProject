@@ -83,27 +83,32 @@ def get_submission():
 
 
 def product_guide():
-    data = pd.read_excel("submissions.xlsx")
-    product = data[["product", "line_of_business"]]
-    product.drop_duplicates(
-        subset=["product", "line_of_business"], keep="first", inplace=True
-    )
-    product.reset_index(drop=True, inplace=True)
-    product.to_sql(
-        con=engine, if_exists="replace", name="product_guide_temp", index=False
-    )
+    remains = pd.read_excel("tables/remains.xlsx")
+    submissions = pd.read_excel("tables/submissions.xlsx")
+    aval_stocks = pd.read_excel("tables/available_stock.xlsx")
+    a = remains.merge(submissions, left_on="product", right_on="product", how="outer")
+    b = a.merge(aval_stocks, left_on="product", right_on="product", how="outer")
+    c = b.drop_duplicates(subset=["product"])
+    d = c["product"]
+    # data = pd.read_excel("submissions.xlsx")
+    # product = data[["product", "line_of_business"]]
+    # product.drop_duplicates(
+    #     subset=["product", "line_of_business"], keep="first", inplace=True
+    # )
+    # product.reset_index(drop=True, inplace=True)
+    d.to_sql(con=engine, if_exists="replace", name="product_guide_temp", index=False)
     clean_table_sql = """
-    TRUNCATE product_guide
+    TRUNCATE product_guide CASCADE
     """
     update_sql = """
-    INSERT INTO product_guide(product, line_of_business)
-    SELECT product, line_of_business FROM product_guide_temp
+    INSERT INTO product_guide(product)
+    SELECT product FROM product_guide_temp
     """
     with engine.connect() as conn:
         conn.execute(text(clean_table_sql))
         conn.execute(text(update_sql))
         conn.commit()
-    product.to_excel("product.xlsx")
+    d.to_excel("tables/product.xlsx")
     return print("Справочник товаров получен")
 
 
@@ -131,7 +136,7 @@ def client_guide():
 
 
 def manager_guide():
-    data = pd.read_excel("submissions.xlsx")
+    data = pd.read_excel("tables/submissions.xlsx")
     manager = data["manager"]
     manager.drop_duplicates(keep="first", inplace=True)
     manager.reset_index(drop=True, inplace=True)
@@ -154,7 +159,7 @@ def manager_guide():
 
 
 def get_remains():
-    remains_xls = pd.read_excel("Остатки.xlsx", header=None)
+    remains_xls = pd.read_excel("tables/Остатки.xlsx", header=None)
     step1 = remains_xls.drop(remains_xls.columns[[0, 1, 2, 4]])
     step2 = step1.rename(columns=step1.iloc[0])
     step3 = step2.dropna(axis="columns", how="all")
@@ -268,7 +273,7 @@ def get_available_stock():
         dtype=data_type,
     )
     clean_table_sql = """
-                       TRUNCATE available_stock
+                       TRUNCATE available_stock 
                        """
     update_sql = """
                        INSERT INTO available_stock(nomenclature,party_sign,buying_season,division,
@@ -285,9 +290,9 @@ def get_available_stock():
 
 
 if __name__ == "__main__":
-    get_submission()
-    # product_guide()
+    # get_submission()
+    product_guide()
     # client_guide()
     # manager_guide()
-    get_remains()
-    get_available_stock()
+    # get_remains()
+    # get_available_stock()
