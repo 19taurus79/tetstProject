@@ -19,7 +19,10 @@ from create_bot import bot, dp
 
 
 async def main():
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(levelname)s %(message)s",
+    )
     # dp.message.outer_middleware(first_contact.FirstContactMiddleware())
     # await set_commands(bot)
     # dp.include_router(first_contact_handler.router)

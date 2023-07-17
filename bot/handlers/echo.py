@@ -1,14 +1,20 @@
 from aiogram import Router
-from aiogram.types import Message
+from aiogram.types import (
+    Message,
+    KeyboardButton,
+    WebAppInfo,
+    InlineKeyboardMarkup,
+    InlineKeyboardButton,
+)
 from bot.utils.message import remains_answer, submissions_answer, aval_stock_answer
-
+from bot.keyboards import kb
 
 router = Router()
 
 
 @router.message()
 async def echo(message: Message):
-    val = message.text.title()
+    val = message.text
     await remains_answer.remains_answer_summary(message, val)
     await remains_answer.remains_answer_series(message, val)
     await submissions_answer.submissions_answer(message, val)

@@ -19,15 +19,15 @@ class ProductGuide(Table):
     line_of_business = Varchar(null=False)
 
 
-class ManagerGuide(Table):
-    id = UUID(primary_key=True)
-    manager = Varchar(null=False, unique=True)
+# class ManagerGuide(Table):
+#     id = UUID(primary_key=True)
+#     manager = Varchar(null=False, unique=True)
 
 
-class ClientGuide(Table):
-    id = UUID(primary_key=True)
-    client = Varchar(null=False, unique=True)
-    company_group = Varchar(null=True)
+# class ClientGuide(Table):
+#     id = UUID(primary_key=True)
+#     client = Varchar(null=False, unique=True)
+#     company_group = Varchar(null=True)
 
 
 class Remains(Table):
@@ -89,3 +89,9 @@ class AvailableStock(Table):
     line_of_business = Varchar(null=True)
     available = Integer()
     product = ForeignKey(references=ProductGuide)
+
+
+class ProductUnderSubmissions(Table):
+    id = UUID(primary_key=True)
+    product = ForeignKey(references=ProductGuide)
+    quantity = Integer()

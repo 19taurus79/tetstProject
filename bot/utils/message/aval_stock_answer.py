@@ -22,11 +22,11 @@ async def avail_stock_answer(message, val):
                 #         f"{aval[i].get('division')} {aval[i].get('available')}{chr(10)}"
                 #     )
                 b.append(
-                    f"{chr(10)}<strong><u>{aval[i].get('product')}</u></strong>{chr(10)}{chr(10)}"
+                    f"{chr(10)}<strong><u>{aval[i].get('product.product')}</u></strong>{chr(10)}{chr(10)}"
                     f"{aval[i].get('division')} {aval[i].get('available')}{chr(10)}"
                 )
             if i > 0:
-                if aval[i - 1].get("product") != aval[i].get("product"):
+                if aval[i - 1].get("product.product") != aval[i].get("product.product"):
                     # if aval[i].get("buying_season") is None:
                     #     b.append(
                     #         f"{chr(10)}<strong><u>{aval[i].get('product')}</u></strong>{chr(10)}{chr(10)}"
@@ -39,10 +39,10 @@ async def avail_stock_answer(message, val):
                     #         f"{aval[i].get('division')} {aval[i].get('available')}{chr(10)}"
                     #     )
                     b.append(
-                        f"{chr(10)}<strong><u>{aval[i].get('product')}</u></strong>{chr(10)}{chr(10)}"
+                        f"{chr(10)}<strong><u>{aval[i].get('product.product')}</u></strong>{chr(10)}{chr(10)}"
                         f"{aval[i].get('division')} {aval[i].get('available')}{chr(10)}"
                     )
-                if aval[i - 1].get("product") == aval[i].get("product"):
+                if aval[i - 1].get("product.product") == aval[i].get("product.product"):
                     #             if aval[i].get("buying_season") is None:
                     #                 b.append(
                     #                     f"{aval[i].get('division')} {aval[i].get('available')}{chr(10)}"

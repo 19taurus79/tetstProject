@@ -1,3 +1,5 @@
+import logging
+
 from aiogram import Router, F
 from aiogram.filters import Command
 from aiogram.fsm.state import StatesGroup, State
@@ -19,6 +21,8 @@ class CommandBot(StatesGroup):
     choosing_remains_nomenclature = State()
     choosing_submission = State()
     show_submission = State()
+    choosing_submissions_nomenclature = State()
+    choosing_avstocks_nomenclature = State()
 
 
 router = Router()
@@ -26,6 +30,8 @@ router = Router()
 
 @router.message(Command("remains"))
 async def remains(message: Message, state: FSMContext):
+    logging.info(f"Пользователь {message.from_user.id} отправил команду {message.text}")
+
     await message.answer(
         "В каком виде показать остатки ?", reply_markup=kb.make_row_keyboard(av_todo)
     )
@@ -35,6 +41,7 @@ async def remains(message: Message, state: FSMContext):
 
 @router.message(CommandBot.choosing_remains_type, F.text.in_(av_todo))
 async def get_remains(message: Message, state: FSMContext):
+    logging.info(f"Пользователь {message.from_user.id} выбрал вариант {message.text}")
     await state.update_data(chosen_remains_type=message.text)
     await message.answer("Укажите номенклатуру :", reply_markup=ReplyKeyboardRemove)
     await state.set_state(CommandBot.choosing_remains_nomenclature)
@@ -42,6 +49,7 @@ async def get_remains(message: Message, state: FSMContext):
 
 @router.message(CommandBot.choosing_remains_nomenclature)
 async def get_nomenclature(message: Message, state: FSMContext):
+    logging.info(f"Пользователь {message.from_user.id} отправил запрос {message.text}")
     await state.update_data(chosen_nomenclature=message.text.capitalize())
     data = await state.get_data()
     remains_type = data.get("chosen_remains_type")
@@ -55,7 +63,6 @@ async def get_nomenclature(message: Message, state: FSMContext):
         reply_markup=kb.make_row_keyboard(["Да", "Нет"]),
     )
     await state.set_state(CommandBot.show_submission)
-    # await state.clear()
 
 
 @router.message(CommandBot.show_submission, F.text.in_(["Да", "Нет"]))
