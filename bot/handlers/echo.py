@@ -6,8 +6,8 @@ from aiogram.types import (
     InlineKeyboardMarkup,
     InlineKeyboardButton,
 )
-from bot.utils.message import remains_answer, submissions_answer, aval_stock_answer
-from bot.keyboards import kb
+from utils.message import remains_answer, submissions_answer, aval_stock_answer
+from keyboards import kb
 
 router = Router()
 
