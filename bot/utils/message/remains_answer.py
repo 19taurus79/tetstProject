@@ -1,7 +1,7 @@
 import logging
 
-from bot.utils.db.remains import get_remains_series, get_summary_remains
-from bot.utils.db.submissions import quantity_under_orders
+from utils.db.remains import get_remains_series, get_summary_remains
+from utils.db.submissions import quantity_under_orders
 from aiogram.exceptions import TelegramBadRequest as err
 
 

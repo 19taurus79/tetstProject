@@ -1,6 +1,6 @@
 from aiogram.types import ReplyKeyboardRemove
 
-from bot.utils.db.submissions import get_submissions, quantity_under_orders
+from utils.db.submissions import get_submissions, quantity_under_orders
 from aiogram.exceptions import TelegramBadRequest as err
 
 

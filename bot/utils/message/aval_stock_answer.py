@@ -1,4 +1,4 @@
-from bot.utils.db.available_stock import get_available_stock
+from utils.db.available_stock import get_available_stock
 from aiogram.exceptions import TelegramBadRequest as err
 
 
