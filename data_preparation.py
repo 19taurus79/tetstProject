@@ -1,12 +1,8 @@
-from pprint import pprint
-
 import pandas as pd
 import sqlalchemy
 from sqlalchemy import text
 
-from bot.utils.db.submissions import quantity_under_orders, all_product_under_orders
 from connection import engine
-from project_test.tables import Submissions
 
 
 def get_template_submissions():

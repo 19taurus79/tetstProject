@@ -2,7 +2,7 @@ from typing import List
 
 from piccolo.query import Sum
 
-from project_test.tables import Submissions
+from bot.project_test.tables import Submissions
 
 
 async def get_submissions(val) -> List:

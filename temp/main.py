@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from project_test.tables import Agent, Client
+from bot.project_test.tables import Agent, Client
 from typing import Optional
 
 app = FastAPI(title="ProjectTest")

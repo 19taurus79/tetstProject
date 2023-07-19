@@ -1,6 +1,6 @@
 from typing import List
 from piccolo.query import Sum
-from project_test.tables import Remains, Submissions
+from bot.project_test.tables import Remains
 
 
 async def get_remains_series(val) -> List:
