@@ -1,6 +1,6 @@
 from typing import List
 
-from bot.project_test.tables import AvailableStock
+from project_test.tables import AvailableStock
 
 
 async def get_available_stock(val) -> List:
