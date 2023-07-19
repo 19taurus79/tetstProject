@@ -5,13 +5,13 @@ from aiogram.filters import Command
 from aiogram.fsm.state import StatesGroup, State
 from aiogram.types import Message, ReplyKeyboardRemove
 
-from bot.keyboards import kb
+from keyboards import kb
 from aiogram.fsm.context import FSMContext
-from bot.utils.message.remains_answer import (
+from utils.message.remains_answer import (
     remains_answer_summary,
     remains_answer_series,
 )
-from bot.utils.message.submissions_answer import submissions_answer
+from utils.message.submissions_answer import submissions_answer
 
 av_todo = ["без партии", "с партией"]
 

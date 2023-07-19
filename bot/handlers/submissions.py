@@ -1,11 +1,11 @@
 from aiogram import Router
 from aiogram.filters import Command, CommandObject
 from aiogram.types import Message, ReplyKeyboardRemove
-from bot.utils.message.submissions_answer import submissions_answer
+from utils.message.submissions_answer import submissions_answer
 from aiogram.fsm.state import StatesGroup, State
-from bot.handlers.remains import CommandBot
+from handlers.remains import CommandBot
 from aiogram.fsm.context import FSMContext
-from bot.handlers.remains import CommandBot
+from handlers.remains import CommandBot
 
 
 router = Router()

@@ -3,8 +3,8 @@ from aiogram.filters import Command, CommandObject
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, ReplyKeyboardRemove
 
-from bot.handlers.remains import CommandBot
-from bot.utils.message.aval_stock_answer import avail_stock_answer
+from handlers.remains import CommandBot
+from utils.message.aval_stock_answer import avail_stock_answer
 
 router = Router()
 
