@@ -9,6 +9,7 @@ from handlers import (
     remains,
     submissions,
     av_stocks,
+    remains_seeds,
 )
 
 # from aiogram.client.session.aiohttp import ClientSession, AiohttpSession
@@ -27,7 +28,7 @@ async def main():
     # await set_commands(bot)
     # dp.include_router(first_contact_handler.router)
     # dp.include_router(inline_kb_test.router)
-    # dp.include_router(remains.router)
+    dp.include_router(remains_seeds.router)
     dp.include_router(submissions.router)
     dp.include_router(remains.router)
     dp.include_router(av_stocks.router)

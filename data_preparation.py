@@ -193,19 +193,19 @@ def get_submission():
         conn.execute(text(clean_table_sql))
         conn.execute(text(update_sql))
         conn.commit()
-    clean_table_sql = """
-                       TRUNCATE product_under_submissions
-                       """
-    update_sql = """
-                    INSERT INTO product_under_submissions(product, SUM(different))
-                    SELECT product
-                    FROM submissions
-                    GROUP BY product
-    """
-    with engine.connect() as conn:
-        conn.execute(text(clean_table_sql))
-        conn.execute(text(update_sql))
-        conn.commit()
+    # clean_table_sql = """
+    #                    TRUNCATE product_under_submissions
+    #                    """
+    # update_sql = """
+    #                 INSERT INTO product_under_submissions(product, SUM(different))
+    #                 SELECT product
+    #                 FROM submissions
+    #                 GROUP BY product
+    # """
+    # with engine.connect() as conn:
+    #     conn.execute(text(clean_table_sql))
+    #     conn.execute(text(update_sql))
+    #     conn.commit()
     return print("Файл с заявками обработан")
 
 
@@ -355,9 +355,9 @@ def get_available_stock():
 
 
 if __name__ == "__main__":
-    # product_guide()
+    product_guide()
     get_submission()
-    # get_remains()
-    # get_available_stock()
+    get_remains()
+    get_available_stock()
     # client_guide()
     # manager_guide()

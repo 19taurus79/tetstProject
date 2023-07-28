@@ -10,11 +10,11 @@ services:
     ports:
       - "5432:5432"
 
-  repetitor_bot:
-    container_name: repetitor_bot
-    image: repetitor_bot_image
-    build:
-      context: bot
-      dockerfile: Dockerfile
-    env_file:
-      - ./.env
+#  repetitor_bot:
+#    container_name: repetitor_bot
+#    image: repetitor_bot_image
+#    build:
+#      context: bot
+#      dockerfile: Dockerfile
+#    env_file:
+#      - ./.env
